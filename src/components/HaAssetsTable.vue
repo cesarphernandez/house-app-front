@@ -31,12 +31,12 @@
         </td>
         <td>
           <router-link
-            class="hover:underline text-green-600"
+            class="hover:underline no-underline text-green-600"
             :to="{ name: 'coin-detail', params: { id: a.id } }"
           >
             {{ a.name }}
           </router-link>
-          <small class="ml-1 text-gray-500">
+          <small class="ml-1 p-1 text-white bg-blue-600 rounded">
             {{ a.symbol }}
           </small>
         </td>
@@ -51,18 +51,25 @@
         >
           {{ percentFilter(a.changePercent24Hr) }}
         </td>
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <HaButton @click="goToCoin(a.id)">
+            <span>Detalle</span>
+          </HaButton>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import HaButton from "@/components/HaButton";
 import { dollarFilter } from "@/filters";
 import { percentFilter } from "@/filters";
 export default {
   name: "PxAssetsTable",
-
+  components: {
+    HaButton,
+  },
   props: {
     assets: {
       type: Array,
@@ -75,6 +82,9 @@ export default {
     },
     percentFilter(value) {
       return percentFilter(value);
+    },
+    goToCoin(id) {
+      this.$router.push({ name: "coin-detail", params: { id } });
     },
   },
 };

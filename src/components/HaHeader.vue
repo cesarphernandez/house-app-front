@@ -6,7 +6,7 @@
           <HaIcon class="mr-2 ml-2" />
           <router-link
             :to="{ name: 'home' }"
-            class="font-semibold text-xl tracking-tight"
+            class="font-semibold text-xl tracking-tight no-underline text-white"
             >PlatziExchange</router-link
           >
         </div>
